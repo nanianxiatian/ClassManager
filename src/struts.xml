@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	 <constant name="struts.devMode" value="true" />
+	<constant name="struts.i18n.encoding" value="utf-8" />
+	
+	 <package name="Grade" namespace="/" extends="struts-default">
+	  <action name="courseChoose" class="courseAction" method="courseLoad">
+            <result name="success">/Grade/GradeCourseChoose.jsp</result>
+      </action>
+      <action name="studentChooseCourse" class="gradeAction" method="studentChooseCourse">
+            <result name="success">/Grade/GradeCourseChooseSuccess.jsp</result>
+      </action>
+       <action name="checkSelectCousrse" class="gradeAction" method="checkSelectCousrse">
+            <result name="success">/Grade/GradeCourseCheck.jsp</result>
+      </action>
+       <action name="studentCourse" class="courseAction" method="courseLoad">
+            <result name="success">/Grade/GradeStudentCourse.jsp</result>
+      </action>
+      <action name="studentGradeInput" class="gradeAction" method="studentGradeInput">
+            <result name="success">/Grade/GradeStudentCourseInput.jsp</result>
+      </action>
+      <action name="scoreInput" class="gradeAction" method="scoreInput">
+            <result name="success" type="redirectAction">studentCourse</result>
+      </action>
+      
+	 </package>
+	 
+	 <package name="Course" namespace="/" extends="struts-default">
+	 <action name="courseLoad" class="courseAction" method="courseLoad">
+            <result name="success">/Course/CourseManager.jsp</result>
+      </action>
+       <action name="courseAdd" class="courseAction" method="courseAdd">
+            <result name="success" type="redirectAction">courseLoad</result>
+      </action>
+      <action name="courseDelete" class="courseAction" method="courseDelete">
+            <result name="success" type="redirectAction">courseLoad</result>
+      </action>
+      <action name="courseUpdateload" class="com.sz.action.CourseAction" method="courseUpdateload">
+           <result name="success">/Course/CourseUpdate.jsp</result>
+      </action>
+      <action name="courseUpdate" class="courseAction" method="courseUpdate">
+           <result name="success" type="redirectAction">courseLoad</result>
+      </action>
+	 </package>
+	 
+	 
+    <package name="Student" namespace="/" extends="struts-default">
+        <action name="studentLogin" class="studentAction" method="studentLogin">
+            <result name="success">/Manager/LoginSuccess.jsp</result>
+            <result name="fail">/Login.jsp</result>
+        </action>
+        <action name="studentLoad" class="studentAction" method="studentLoad">
+            <result name="success">/Student/StudentManager.jsp</result>
+        </action>
+        <action name="studentAdd" class="studentAction" method="studentAdd">
+             <result name="success" type="redirectAction">studentLoad</result>
+        </action>
+        <action name="studentDelete" class="studentAction" method="studentDelete">
+             <result name="success" type="redirectAction">studentLoad</result>
+        </action>
+        <action name="studentUpdateload" class="studentAction" method="studentUpdateload">
+             <result name="success" >/Student/StudentUpdate.jsp</result>
+        </action>
+         <action name="studentUpdate" class="studentAction" method="studentUpdate">
+             <result name="success" type="redirectAction">studentLoad</result>
+        </action>
+    </package>
+    <package name="Class" namespace="/" extends="struts-default">
+
+        <action name="classLoad" class="classAction" method="classLoad">
+            <result name="success">/Class/ClassManager.jsp</result>
+        </action>
+        <action name="classAdd" class="classAction" method="classAdd">
+            <result name="success" type="redirectAction">classLoad</result>
+        </action>
+         <action name="classDelete" class="classAction" method="classDelete">
+            <result name="success" type="redirectAction">classLoad</result>
+        </action>
+        <action name="classUpdateload" class="classAction" method="classUpdateload">
+            <result name="success">/Class/ClassUpdate.jsp</result>
+        </action>
+        <action name="classUpdate" class="classAction" method="classUpdate">
+            <result name="success" type="redirectAction">classLoad</result>
+        </action>
+    </package>
+    
+    <package name="ajax" extends="json-default">
+	   <action name="loadtclasses" class="classLoadAction" method="loadtclasses">
+			<result name="success" type="json"></result>
+		</action>
+		<action name="getStudentInfo" class="studentQueryAction" method="getStudentInfo">
+			<result name="success" type="json"></result>
+		</action>
+		<action name="getCourseInfo" class="courseQueryAction" method="getCourseInfo">
+			<result name="success" type="json"></result>
+		</action>
+	</package>
+    
+    
+</struts>    
